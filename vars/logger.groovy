@@ -1,17 +1,7 @@
-/*def logInfo(msg) {
+def logInfo(String msg) {
     echo "[INFO] ${msg}"
 }
 
-def logDebug(msg) {
-    echo "[DEBUG] ${msg}"
-}
-
-def logError(msg) {
+def logError(String msg) {
     echo "[ERROR] ${msg}"
-}*/
-
-
-// vars/logError.groovy
-def call(String message) {
-    echo "[ERROR] ${message}"
 }
