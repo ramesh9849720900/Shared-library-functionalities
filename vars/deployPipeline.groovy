@@ -8,17 +8,17 @@ import org.myorg.utils.RetryHelper
 //import vars.Logger
 
 def call(Map params) {
-    Logger.log("Starting deployment...")
+    logger.logInfo("Starting deployment...")
     node {
         def config
 
         stage('Load Config') {
             try {
                 config = ConfigLoader.load(params.team)
-                logInfo("Config loaded for ${params.team}")
+                logger.logInfo("Config loaded for ${params.team}")
             } 
             catch (e) {
-                logError("Kuberenetes deployment failed")
+                logger.logError("Kuberenetes deployment failed")
                 error("Stopping pipeline due to config error.")
             }
         }
