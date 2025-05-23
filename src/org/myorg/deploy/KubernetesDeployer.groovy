@@ -1,6 +1,6 @@
 package org.myorg.deploy
 
-import static logger.*
+//import static logger.*
 
 class KubernetesDeployer {
     def deploy(Map config) {
