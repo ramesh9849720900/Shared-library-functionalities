@@ -4,8 +4,8 @@
 import org.myorg.config.ConfigLoader
 import org.myorg.deploy.*
 import org.myorg.utils.RetryHelper
-import static logger.*
-import org.myorg.utils.Logger
+//import static logger.*
+import vars.Logger
 
 def call(Map params) {
     node {
