@@ -18,6 +18,10 @@ def call(Map params) {
                 logger.logInfo("Config loaded for ${params.team}")
             } 
             catch (e) {
+                if (!config?.env || !config?.namespace || !config?.manifestPath) {
+                    logger.logError("Kubernetes deployment failed")
+                    error("Stopping pipeline due to config error.")
+                }
                 logger.logError("Kuberenetes deployment failed")
                 error("Stopping pipeline due to config error.")
             }
