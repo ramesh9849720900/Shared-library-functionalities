@@ -1,1 +1,3 @@
-#Write code here...
+clusterName: "default"
+context: "default"
+manifest: "k8s/teamA-deployment.yaml"
