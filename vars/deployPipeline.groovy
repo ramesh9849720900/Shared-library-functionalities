@@ -16,6 +16,7 @@ def call(Map params) {
             try {
                 config = ConfigLoader.load(params.team)
                 logger.logInfo("Config loaded for ${params.team}")
+                logger.logInfo("Received config: ${config}")
             } 
             catch (e) {
                 if (!config?.env || !config?.namespace || !config?.manifestPath) {
