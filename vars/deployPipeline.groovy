@@ -17,7 +17,7 @@ def call(Map params) {
                 logInfo("Config loaded for ${params.team}")
             } 
             catch (e) {
-                logError("Config loading failed: ${e.message}")
+                logError("Kuberenetes deployment failed")
                 error("Stopping pipeline due to config error.")
             }
         }
