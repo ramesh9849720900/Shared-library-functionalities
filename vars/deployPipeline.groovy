@@ -5,9 +5,10 @@ import org.myorg.config.ConfigLoader
 import org.myorg.deploy.*
 import org.myorg.utils.RetryHelper
 //import static logger.*
-import vars.Logger
+//import vars.Logger
 
 def call(Map params) {
+    Logger.log("Starting deployment...")
     node {
         def config
 
