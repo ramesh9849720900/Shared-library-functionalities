@@ -2,10 +2,16 @@ package org.myorg.config
 
 import org.yaml.snakeyaml.Yaml
 
-class ConfigLoader {
-    static Map load(String configName) {
+class ConfigLoader implements Serializable {
+    def steps
+
+    ConfigLoader(steps) {
+        this.steps = steps
+    }
+
+    def load(String filePath) {
+        def yamlText = steps.libraryResource(filePath)
         def yaml = new Yaml()
-        def text = libraryResource("config/${configName}.yaml")
-        return yaml.load(text) as Map
+        return yaml.load(yamlText)
     }
 }
