@@ -8,7 +8,7 @@ def call(Map params) {
     logger.logInfo("Starting deployment...")
 
     node {
-        def config
+        def config = org.myorg.config.ConfigLoader.load("teamA")
 
         stage('Load Config') {
             try {
