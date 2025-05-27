@@ -1,6 +1,6 @@
 package org.myorg.config
 
-import groovy.yaml.YamlSlurper
+import org.yaml.YamlSlurper
 
 class ConfigLoader {
     static Map load(String team) {
