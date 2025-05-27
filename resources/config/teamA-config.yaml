@@ -1,5 +1,5 @@
 env: dev
 namespace: default
-manifestPath: k8s/deployment.yaml
+manifestPath: resources/k8s/deployment.yaml
 context: default
 clusterName: default
