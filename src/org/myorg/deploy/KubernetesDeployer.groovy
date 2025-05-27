@@ -10,13 +10,19 @@ class KubernetesDeployer implements Serializable {
     }
 
     def deploy(Map config) {
-        try {
-            logger.logInfo("Deploying to Kubernetes: ${config.clusterName}")
-            script.sh "kubectl config use-context ${config.context}"
-            script.sh "kubectl apply -f ${config.manifestPath}"
-        } catch (e) {
-            logger.logError("Kubernetes deployment failed: ${e.message}")
-            throw e
+    try {
+        logger.logInfo("Deploying to Kubernetes: ${config.clusterName}")
+        script.sh "kubectl config use-context ${config.context}"
+
+        // Load YAML from shared library resources
+        def manifestContent = script.libraryResource(config.manifestPath)
+        script.writeFile file: 'deployment.yaml', text: manifestContent
+
+        // Apply it using kubectl
+        script.sh "kubectl apply -f deployment.yaml"
+    } catch (e) {
+        logger.logError("Kubernetes deployment failed: ${e.message}")
+        throw e
         }
     }
 }
