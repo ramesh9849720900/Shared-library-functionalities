@@ -4,17 +4,15 @@ import org.myorg.config.ConfigLoader
 import org.myorg.deploy.*
 import org.myorg.utils.RetryHelper
 
-def call(Map params = [:]) {
+def call(Map params) {
+    logger.logInfo("Starting deployment...")
+
     node {
         stage('Load Config') {
-            def configLoader = new ConfigLoader(this)
-            def config = configLoader.load('config/teamA-config.yaml')
-            echo "Config loaded: ${config}"
-        }
-
-        stage('Load Config') {
+            def config
             try {
-                config = ConfigLoader.load(params.team)
+                def configLoader = new ConfigLoader(this)
+                config = configLoader.load("config/${params.team}-config.yaml")
                 logger.logInfo("Config loaded for ${params.team}")
                 logger.logInfo("Received config: ${config}")
             } catch (e) {
