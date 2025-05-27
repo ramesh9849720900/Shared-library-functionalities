@@ -13,7 +13,7 @@ class KubernetesDeployer implements Serializable {
         try {
             logger.logInfo("Deploying to Kubernetes: ${config.clusterName}")
             script.sh "kubectl config use-context ${config.context}"
-            script.sh "kubectl apply -f ${config.manifest}"
+            script.sh "kubectl apply -f ${config.manifestPath}"
         } catch (e) {
             logger.logError("Kubernetes deployment failed: ${e.message}")
             throw e
