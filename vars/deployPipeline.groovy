@@ -6,10 +6,9 @@ import org.myorg.utils.RetryHelper
 
 def call(Map params) {
     logger.logInfo("Starting deployment...")
-
+    def config
     node {
-        stage('Load Config') {
-            def config
+        stage('Load Config') { 
             try {
                 def configLoader = new ConfigLoader(this)
                 config = configLoader.load("config/${params.team}-config.yaml")
@@ -28,7 +27,7 @@ def call(Map params) {
 
         stage('Deploy') {
             def retryHelper = new RetryHelper(this)
-            def deploymentConfig = config
+           // def deploymentConfig = config
             retryHelper.retry(3) {
                 if (params.deploymentType == 'kubernetes') {
                     new KubernetesDeployer().deploy(config)
