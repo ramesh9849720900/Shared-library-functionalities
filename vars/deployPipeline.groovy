@@ -28,6 +28,7 @@ def call(Map params) {
 
         stage('Deploy') {
             def retryHelper = new RetryHelper(this)
+            def deploymentConfig = config
             retryHelper.retry(3) {
                 if (params.deploymentType == 'kubernetes') {
                     new KubernetesDeployer().deploy(config)
