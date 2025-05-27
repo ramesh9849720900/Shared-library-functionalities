@@ -30,7 +30,7 @@ def call(Map params) {
            // def deploymentConfig = config
             retryHelper.retry(3) {
                 if (params.deploymentType == 'kubernetes') {
-                    new KubernetesDeployer().deploy(config)
+                    new KubernetesDeployer(this).deploy(config)
                 } else {
                     error("Unsupported deployment type: ${params.deploymentType}")
                 }
