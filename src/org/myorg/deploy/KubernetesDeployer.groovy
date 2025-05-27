@@ -1,15 +1,21 @@
 package org.myorg.deploy
 
-//import static logger.*
+class KubernetesDeployer implements Serializable {
+    def script
+    def logger
 
-class KubernetesDeployer {
+    KubernetesDeployer(script) {
+        this.script = script
+        this.logger = script.logger  // <- pull logger from pipeline context
+    }
+
     def deploy(Map config) {
         try {
-            logInfo("Deploying to Kubernetes: ${config.clusterName}")
-            sh "kubectl config use-context ${config.context}"
-            sh "kubectl apply -f ${config.manifest}"
+            logger.logInfo("Deploying to Kubernetes: ${config.clusterName}")
+            script.sh "kubectl config use-context ${config.context}"
+            script.sh "kubectl apply -f ${config.manifest}"
         } catch (e) {
-            logError("Kubernetes deployment failed: ${e.message}")
+            logger.logError("Kubernetes deployment failed: ${e.message}")
             throw e
         }
     }
