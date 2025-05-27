@@ -1,13 +1,11 @@
 package org.myorg.config
 
 import org.yaml.snakeyaml.Yaml
-import java.nio.file.Files
-import java.nio.file.Paths
 
 class ConfigLoader {
-    static Map loadConfig(String filePath) {
+    static Map load(String configName) {
         def yaml = new Yaml()
-        def file = new File(filePath)
+        def file = new File("config/${configName}.yaml")
         return yaml.load(file.text) as Map
     }
 }
