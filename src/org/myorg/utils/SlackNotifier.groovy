@@ -9,17 +9,23 @@ class SlackNotifier implements Serializable {
 
     void send(String message, String color = '#439FE0') {
         script.slackSend(
-            channel: '#deployments',      // Or make it dynamic
-            color: color,
+            channel: '#ci-cd-alerts',      // Or make it dynamic
+            color: '#439FE0',
             message: message
         )
     }
 
     void notifySuccess(String message) {
-        send(":white_check_mark: ${message}", 'good')
+        script.slackSend(
+        color: 'good',
+        message: ":white_check_mark: ${message}"
+        )
     }
 
     void notifyFailure(String message) {
-        send(":x: ${message}", 'danger')
+        script.slackSend(
+        color: 'danger',
+        message: ":x: ${message}"
+        )
     }
 }
