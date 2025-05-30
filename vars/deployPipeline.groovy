@@ -7,7 +7,7 @@ import org.myorg.utils.*
 def call(Map params) {
     logger.logInfo("Starting deployment...")
     def config
-    def slack = newSlackNotifier(this)
+    def slack = SlackNotifier(this)
     node {
         stage('Load Config') { 
             try {
