@@ -18,7 +18,7 @@ _Time_: ${timestamp}
         script.slackSend(
             channel: '#ci-cd-alerts',      // Or make it dynamic
             color: '#439FE0',
-            message: message
+            message: message,
             teamDomain: "DevOps_Engineers"
         )
     }
