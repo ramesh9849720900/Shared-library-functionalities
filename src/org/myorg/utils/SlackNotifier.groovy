@@ -33,7 +33,7 @@ _Time_: ${timestamp}
     void notifyFailure(String message) {
         script.slackSend(
         color: 'danger',
-_Triggered by_: ${steps.currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')[0]?.userName ?: "Unknown"}
+echo "Triggered by: ${steps.currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')[0]?.userName ?: "Unknown"}"
 _Time_: ${new Date().format("yyyy-MM-dd HH:mm:ss")}
 """,
         message: ":x: ${message}"
