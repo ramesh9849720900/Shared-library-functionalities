@@ -2,13 +2,13 @@ def call(String type, String message) {
     def notifier = new org.myorg.utils.SlackNotifier(this)
     switch(type) {
         case 'success':
-            notifier.success(message)
+            notifier.notifySuccess(message)
             break
         case 'failure':
-            notifier.failure(message)
+            notifier.notifyFailure(message)
             break
         case 'info':
         default:
-            notifier.info(message)
+            notifier.send(message)
     }
 }
