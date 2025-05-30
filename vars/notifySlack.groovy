@@ -1,5 +1,7 @@
+import org.myorg.utils.SlackNotifier
+
 def call(String type, String message) {
-    def notifier = new org.myorg.utils.SlackNotifier(this)
+    def notifier = new SlackNotifier(this)
     switch(type) {
         case 'success':
             notifier.notifySuccess(message)
